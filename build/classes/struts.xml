@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	<package name="demo1" extends="struts-default" namespace="/">
+	
+		<!-- 全局结果页面配置 -->
+		<!-- 即配置了局部结果页面也配置了全局结果页面，执行是以局部为主 -->
+		<global-results>
+			<result name="success">/hello.jsp</result>
+		</global-results>
+	
+		<action name="price" class="cn.itcast.action.BookAction" method="price">
+			<result name="100">/customer.jsp</result>
+		</action>
+		<action name="book" class="cn.itcast.action.BookAction">
+			<!-- type属性：如何到路径里面去 
+				dispateher:默认值是转发操作
+				redirect:重定向操作
+				chain:转发到action，一般不用，缓存问题
+			 -->
+			<result name="success" type="redirect">/customer.jsp</result>
+		</action>
+		<action name="order" class="cn.itcast.action.OrderAction">
+		</action>
+	</package>
+	
+</struts>
